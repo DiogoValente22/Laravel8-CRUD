@@ -163,6 +163,40 @@
                 });
             }
 
+            // Delete employee ajax request
+            $(document).on('click', '.deleteIcon', function(e){
+                e.preventDefault();
+                let id = $(this).attr('id');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: ' {{ route('delete') }} ',
+                            method: 'post',
+                            data: {
+                                id: id,
+                                _token: ' {{ csrf_token() }} '
+                            },
+                            success: function(res){
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Employee deleted Successfully!',
+                                    'success'
+                                );
+                                fetchAllEmployees();
+                            }
+                        });
+                    }
+                });
+            });
+
             // Update employee ajax request
             $("#edit_employee_form").submit(function(e){
                 e.preventDefault();

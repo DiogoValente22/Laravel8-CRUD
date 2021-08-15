@@ -163,6 +163,34 @@
                 });
             }
 
+            // Update employee ajax request
+            $("#edit_employee_form").submit(function(e){
+                e.preventDefault();
+                const fd = new FormData(this);
+                $("#edit_employee_btn").text('Updating...');
+                $.ajax({
+                    url: '{{ route('update') }}',
+                    method: 'post',
+                    data: fd,
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    success: function(res){
+                        if(res.status == 200){
+                            Swal.fire(
+                                'Updated!',
+                                'Employee Updated Successfully!',
+                                'success'
+                            )
+                            fetchAllEmployees();
+                        }
+                        $("#edit_employee_btn").text('Update Employee');
+                        $("#edit_employee_form")[0].reset();
+                        $("#editEmployeeModal").modal('hide');
+                    }
+                });
+            });
+
             //edit employee ajax request
             $(document).on('click', '.editIcon', function(e){
                 e.preventDefault();

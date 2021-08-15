@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EmployeeController extends Controller
 {
@@ -79,6 +80,34 @@ class EmployeeController extends Controller
         $id = $request->id;
         $emp = Employee::find($id);
         return response()->json($emp);
+    }
+
+    //handle update employee ajax request
+    public function update(Request $request){
+        $fileName = '';
+        $emp = Employee::find($request->emp_id);
+        if($request->hasFile('avatar')){
+            $file = $request->file('avatar');
+            $fileName = time().'.'.$file->getClientOriginalExtension();
+            $file->storeAs('public/images', $fileName);
+            if($emp->avatar){
+                Storage::delete('public/images/'.$emp->avatar);
+            }
+        }else {
+            $fileName = $request->emp_avatar;
+        }
+        $empData = [
+            'first_name' => $request->fname,
+            'last_name' => $request->lname,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'post' => $request->post,
+            'avatar' => $fileName,
+        ];
+        $emp->update($empData);
+        return response()->json([
+            'status' => 200
+        ]);
     }
 
 }

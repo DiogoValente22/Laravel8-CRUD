@@ -1,3 +1,32 @@
+# CRUD using Laravel 8
+
+## ❓ What is this project?
+This is a simple CRUD using Laravel 8 that i used to study.
+
+## 💻 Technologies and plug-ins used
+
+- PHP - Laravel 8
+- jQuery & AJAX
+- HTML
+- Bootstrap 5
+- MySQL
+- <a href="https://sweetalert2.github.io/">Sweetalert2</a>
+- <a href="https://datatables.net/">DataTables</a>
+
+## 📷 Prints
+
+Main:
+<img src="prints/laravel_crud_main.PNG" alt="Main print">
+
+Create Employee Modal:
+<img src="prints/laravel_crud_modal.PNG" alt="Main print">
+
+Update Emplooyee Modal:
+<img src="prints/laravel_crud_update_modal.PNG" alt="Main print">
+
+Delete Employee Modal:
+<img src="prints/laravel_crud_delete_modal.PNG" alt="Main print">
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
